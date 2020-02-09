@@ -1,4 +1,3 @@
-require 'pry'
 class Backer
   attr_reader :name, :backed_projects
 
@@ -9,11 +8,6 @@ class Backer
 
   def back_project(project)
     @backed_projects.push(project)
-    #find or add backer to project
-    #binding.pry
-    if project.backers.find{|backer| backer == self} == nil
-      project.add_backer(self)
-    end
+    project.add_backer(self) unless project.backers.include?(self)
   end
-
 end
